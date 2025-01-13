@@ -3,11 +3,10 @@ package app;
 public class QuickSort {
 
 	private int[] valores;
-	private QuickSortParticionamento p;
+	//QuickSortParticionamento p;
 
 	private QuickSort(int[] valores) {
 		this.valores = valores; 
-		this.p = new QuickSortParticionamento();
 	}
 
 	public static QuickSort getInstancia(int[] valores) {
@@ -18,16 +17,28 @@ public class QuickSort {
 		return valores.length;
 	}
 	
+	
 	public int particionamento (int left, int right) {
-		return p.particionar(valores, left, right);
+		return new QuickSortParticionamento(this, left, right).computar();
+	}
+	
+	protected void swap(int i, int j) {
+		int temp = valores[i];
+		valores[i] = valores[j];
+		valores[j] = temp;
 	}
 
 	public int[] ordenar(int left, int right) {
 		if (left < right) {
-			int indicePivot = p.particionar(valores, left, right);
+			int indicePivot = particionamento(left, right);
 			ordenar(left, indicePivot -1);
 			ordenar(indicePivot + 1, right);
 		}
 		return valores;
 	}
+	
+	public int[] getValores () {
+		return valores;
+	}
+	
 }
