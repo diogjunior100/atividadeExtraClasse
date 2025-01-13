@@ -3,7 +3,6 @@ package app;
 public class QuickSort {
 
 	private int[] valores;
-	//QuickSortParticionamento p;
 
 	private QuickSort(int[] valores) {
 		this.valores = valores; 
